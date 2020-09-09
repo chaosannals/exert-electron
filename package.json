@@ -1,0 +1,29 @@
+{
+  "name": "exert-electron",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "application.js",
+  "scripts": {
+    "download": "node download.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaosannals/exert-electron.git"
+  },
+  "author": {
+    "name": "chaosannals",
+    "email": "chaosannals@outlook.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chaosannals/exert-electron/issues"
+  },
+  "homepage": "https://github.com/chaosannals/exert-electron#readme",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "iconv-lite": "^0.6.2",
+    "superagent": "^6.1.0"
+  }
+}
