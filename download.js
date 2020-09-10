@@ -45,6 +45,11 @@ class Downloader {
         });
     }
 
+    /**
+     * 获取目录下的压缩包。
+     * 
+     * @param {*} folder 
+     */
     async fetch(folder) {
         let response = await superagent.get(folder.link);
         let $ = cheerio.load(response.text);
@@ -64,8 +69,11 @@ class Downloader {
             let name = path.basename(link);
             return {
                 link: link,
+                name: name,
                 target: `httpsgithub.comelectronelectronreleasesdownload${version}${name}`
             }
+        }).filter(i => {
+            return /^electron-/.test(i.name);
         });
     }
 
@@ -85,12 +93,12 @@ class Downloader {
                 if (!fs.existsSync(p)) {
                     fs.mkdirSync(p, { recursive: true });
                 }
-                let fp = path.resolve(p, path.basename(i.link));
+                let fp = path.resolve(cachePath, i.name);
                 if (fs.existsSync(fp)) {
                     console.log('exists', fp);
                     continue;
                 }
-                console.log('download', p);
+                console.log('download', i.link, ' => ', fp);
                 let r = await superagent.get(i.link);
                 fs.writeFileSync(fp, r.body);
             }
